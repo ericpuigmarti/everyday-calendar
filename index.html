@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Everyday Calendar</title>
+	<link href="css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+	<div id="calendar"></div>
+
+<!-- Calendar Script-->
+ <script type="text/javascript">function createNode(month, day) {
+    let ele = document.createElement("div")
+    ele.classList.add("node", "month-" + month, "day-" + day)
+    ele.innerText = day
+
+    ele.addEventListener("click", e => toggleActive(month, day))
+
+    return ele;
+}
+
+	function createCalendar() {
+    let year = new Date().getFullYear;
+    let isLeap = new Date(year, 1, 29).getMonth() == 1;
+    const months = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const monthDays = [31, (isLeap) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    let calEle = document.getElementById("calendar");
+
+    months.forEach((month,idx) => {
+        let calCol = document.createElement("div")
+        calCol.classList.add("calCol")
+
+        let monthEle = document.createElement("div")
+        monthEle.classList.add("month-name")
+        monthEle.innerText = month.substr(0,3)
+        calCol.appendChild(monthEle)
+
+        for (var i = 0; i < monthDays[idx]; i++) {
+            let day = i+1
+            calCol.appendChild(createNode(idx, day))
+        }
+
+        calEle.appendChild(calCol);
+    });
+	}
+
+	function setActive(arr) {
+    arr.forEach((month, monthIdx) => {
+        month.forEach(day => {
+            let queryString = ".node.month-" + monthIdx + ".day-" + day;
+            let node = document.querySelector(queryString)
+            node.classList.toggle("active")
+        });
+    });
+	}
+
+	function toggleActive(month, day) {
+    let queryString = ".node.month-" + month + ".day-" + day;
+    let node = document.querySelector(queryString)
+    node.classList.toggle("active")
+	}
+
+	createCalendar();
+	let active = [
+    	[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31],
+	    [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28],
+	    [1,2,3,4,5,6,7,8,9,10,11]
+	]
+	setActive(active)
+</script>
+</body>
+
+</html>

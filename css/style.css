@@ -1,0 +1,46 @@
+body {
+	margin: 0;
+    background: black;
+    font-family: -apple-system, Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#calendar {
+}
+
+#calendar .calCol {
+    /* display: inline-block; */
+}
+
+.month-name {
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    display: inline-block;
+    margin-right: 10px;
+    width: 40px;
+}
+
+#calendar .node {
+    padding: 5px;
+    display: inline-flex;
+    background: #272626;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    justify-content: center;
+    align-items: center;
+    margin: 3px;
+    color: white;
+    cursor: pointer;
+    font-size: 10pt;
+}
+
+#calendar .node.active {
+    background-color: #F44336;
+}
